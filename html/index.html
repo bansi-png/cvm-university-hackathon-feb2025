@@ -1,0 +1,660 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+  data-style="light">
+  <head>
+   <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Herbify</title>
+    <link rel="icon" href="img/logo-removebg-preview.png" type="image/x-icon"/>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <!-- <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> -->
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <!-- <script src="../assets/js/config.js"></script> -->
+    <style type="text/css">
+      .chat-container {
+/*            width: 100%;*/
+/*            max-width: 800px;*/
+/*            background: white;*/
+/*            border-radius: 20px;*/
+/*            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+            overflow: scroll;
+            padding: 25px;
+            height: 35rem;
+        }
+
+      .message-content {
+     background-color: #E8F5E9;
+    padding: 15px 20px;
+    border-radius: 18px;
+    max-width: 70%;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .bot-avatar {
+ width: 30px;
+    height: 30px;
+    background-color: #69B578;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+    margin-top: 6px;
+        }
+
+        .user-avatar {
+               width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-left: 12px;
+    flex-shrink: 0;
+    margin-top: 7px;
+        }
+
+        .message-content {
+            background-color: #E8F5E9;
+    padding: 15px 20px;
+    border-radius: 1px;
+    max-width: 70%;
+    font-size: 13px;
+    font-weight: 600;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            background-color: #E8F5E9;
+        }
+
+        .options-content {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+}
+
+       .options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+
+    width: 100%;
+}
+        .option-button {
+        padding: 7px 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
+
+       .option-button:hover {
+    background-color: #E8F5E9;
+    border-color: #69B578;
+}
+
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+          <div class="app-brand demo">
+            <a href="index.html" class="app-brand-link">
+              <span class="app-brand-text demo menu-text fw-bold ms-2">HERBIFY</span>
+            </a>
+
+            <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+              <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
+            </a>
+          </div>
+
+          <div class="menu-inner-shadow"></div>
+
+          <ul class="menu-inner py-1">
+            <!-- Dashboards -->
+            <li class="menu-item active open">
+              <a href="javascript:void(0);" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="Dashboards">Skin Survey</div>
+                <!-- <span class="badge rounded-pill bg-danger ms-auto">5</span> -->
+              </a>
+
+            </li>
+
+            <!-- Layouts -->
+            <li class="menu-item">
+              <a href="javascript:void(0);" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-layout"></i>
+                <div class="text-truncate" data-i18n="Layouts">Your Routine</div>
+              </a>
+
+
+            </li>
+
+            
+            <!-- Apps & Pages -->
+            <li class="menu-header small text-uppercase">
+              <span class="menu-header-text">Profile Settings</span>
+            </li>
+            
+            <!-- Pages -->
+            <li class="menu-item">
+              <a href="pages-account-settings-account.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                <div class="text-truncate" data-i18n="Account">Account Settings</div>
+              </a>
+
+            </li>
+            
+
+            <!-- Components -->
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+            <!-- Cards -->
+            <li class="menu-item">
+              <a href="blogs.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div class="text-truncate" data-i18n="Basic">Blogs</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="progress.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div class="text-truncate" data-i18n="Basic">Progress Tracker</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="cards-basic.html" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-collection"></i>
+                <div class="text-truncate" data-i18n="Basic">Products</div>
+              </a>
+            </li>
+            <!-- User interface -->
+            
+
+            
+            <li class="menu-item">
+              <a
+                href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                target="_blank"
+                class="menu-link">
+                <i class="menu-icon tf-icons bx bx-support"></i>
+                <div class="text-truncate" data-i18n="Support">Support</div>
+              </a>
+            </li>
+
+          </ul>
+        </aside>
+        <!-- / Menu -->
+
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="bx bx-menu bx-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                     A
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              A
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">John Doe</h6>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"> <i class="bx bx-cog bx-md me-3"></i><span>Settings</span> </a>
+                    </li>
+                    
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-xxl-8 mb-6 order-0">
+                  <div class="card">
+
+                     <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <!-- Initial message will be added by JavaScript -->
+                    </div>
+    </div>
+                  </div>
+                </div>
+               <div class="nav-align-top mb-6 col">
+                    <ul class="nav nav-pills mb-4" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">
+                          Home
+                        </button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button type="button" class="nav-link" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-profile" aria-controls="navs-pills-top-profile" aria-selected="false" tabindex="-1">
+                          Profile
+                        </button>
+                      </li>
+    
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                        <p>
+                          Icing pastry pudding oat cake. Lemon drops cotton candy caramels cake caramels sesame snaps
+                          powder. Bear claw candy topping.
+                        </p>
+                        <p class="mb-0">
+                          Tootsie roll fruitcake cookie. Dessert topping pie. Jujubes wafer carrot cake jelly. Bonbon
+                          jelly-o jelly-o ice cream jelly beans candy canes cake bonbon. Cookie jelly beans marshmallow
+                          jujubes sweet.
+                        </p>
+                      </div>
+                      <div class="tab-pane fade" id="navs-pills-top-profile" role="tabpanel">
+                        <p>
+                          Donut dragée jelly pie halvah. Danish gingerbread bonbon cookie wafer candy oat cake ice
+                          cream. Gummies halvah tootsie roll muffin biscuit icing dessert gingerbread. Pastry ice cream
+                          cheesecake fruitcake.
+                        </p>
+                        <p class="mb-0">
+                          Jelly-o jelly beans icing pastry cake cake lemon drops. Muffin muffin pie tiramisu halvah
+                          cotton candy liquorice caramels.
+                        </p>
+                      </div>
+      
+                    </div>
+                  </div>
+
+                <!--/ Expense Overview -->
+          <!-- Content wrapper -->
+        </div>
+        <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+   
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+     <script>
+ // Questions data
+const questions = [
+    {
+        question: "How old are you?",
+        options: [
+            "Under 20",
+            "20-30",
+            "31-45",
+            "46+"
+        ]
+    },
+    {
+        question: "How would you describe your skin at the end of the day?",
+        options: [
+            "Feels tight and dry",
+            "Looks shiny and feels oily",
+            "Some areas are oily, some dry",
+            "Feels comfortable, not too dry or oily"
+        ]
+    },
+    {
+        question: "Do you get pimples or spots?",
+        options: [
+            "Almost never",
+            "Sometimes",
+            "Often"
+        ]
+    },
+    {
+        question: "Does your skin easily become red or irritated?",
+        options: [
+            "Rarely or never",
+            "Sometimes",
+            "Very easily"
+        ]
+    },
+    {
+        question: "What bothers you most about your skin?",
+        options: [
+            "Spots and pimples",
+            "Fine lines and wrinkles",
+            "Dark spots or uneven tone",
+            "Redness",
+            "Dry or flaky skin",
+            "Oily or shiny skin",
+            "My skin is generally fine"
+        ]
+    }
+];
+
+// Global variables
+let currentQuestion = 0;
+let userAnswers = {};
+const chatMessages = document.getElementById('chatMessages');
+
+// Scroll handling functions
+function scrollToBottom() {
+    const chatContainer = document.querySelector('.chat-container');
+    const scrollHeight = chatContainer.scrollHeight;
+    
+    chatContainer.scrollTo({
+        top: scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+function addScrollToBottomButton() {
+    const button = document.createElement('button');
+    button.className = 'scroll-bottom-btn';
+    button.innerHTML = '↓';
+    button.style.display = 'none';
+    
+    const chatContainer = document.querySelector('.chat-container');
+    chatContainer.appendChild(button);
+    
+    chatContainer.addEventListener('scroll', () => {
+        const scrollDiff = chatContainer.scrollHeight - chatContainer.scrollTop - chatContainer.clientHeight;
+        button.style.display = scrollDiff > 100 ? 'block' : 'none';
+    });
+    
+    button.addEventListener('click', scrollToBottom);
+}
+
+// Message handling functions
+function addMessage(content, isUser = false, isOption = false) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${isUser ? 'user-message' : ''}`;
+    
+    if (!isOption) {
+        const avatar = document.createElement('div');
+        avatar.className = isUser ? 'user-avatar' : 'bot-avatar';
+        messageDiv.appendChild(avatar);
+    }
+    
+    const messageContent = document.createElement('div');
+    messageContent.className = isOption ? 'options-content' : 'message-content';
+    
+    if (typeof content === 'string') {
+        messageContent.textContent = content;
+    } else {
+        messageContent.appendChild(content);
+    }
+    
+    messageDiv.appendChild(messageContent);
+    chatMessages.appendChild(messageDiv);
+    
+    // Ensure smooth scrolling
+    requestAnimationFrame(() => {
+        scrollToBottom();
+    });
+    
+    // Additional scroll check after content loads
+    setTimeout(scrollToBottom, 100);
+}
+
+function createOptions(options) {
+    const container = document.createElement('div');
+    container.className = 'options-container';
+    
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'option-button';
+        button.textContent = option;
+        button.onclick = () => handleOption(option);
+        container.appendChild(button);
+    });
+    
+    return container;
+}
+
+// Question handling functions
+function handleOption(selected) {
+    // Disable all option buttons to prevent multiple selections
+    const buttons = document.querySelectorAll('.option-button');
+    buttons.forEach(button => {
+        button.disabled = true;
+        if (button.textContent === selected) {
+            button.style.backgroundColor = '#E8F5E9';
+            button.style.borderColor = '#69B578';
+        }
+    });
+
+    // Store the answer
+    userAnswers[questions[currentQuestion].question] = selected;
+    
+    // Add user's selection as a message
+    addMessage(selected, true);
+    
+    // Proceed to next question with a delay
+    setTimeout(() => {
+        currentQuestion++;
+        if (currentQuestion < questions.length) {
+            askQuestion(currentQuestion);
+        } else {
+            finishQuestionnaire();
+        }
+    }, 1000);
+}
+
+function askQuestion(index) {
+    const question = questions[index];
+    addMessage(question.question);
+    
+    // Add options with a slight delay for better UX
+    setTimeout(() => {
+        addMessage(createOptions(question.options), false, true);
+    }, 500);
+}
+
+function finishQuestionnaire() {
+    addMessage("Thank you for completing the skin assessment! 🌟");
+    
+    setTimeout(() => {
+        addMessage("We're analyzing your responses to create personalized recommendations...");
+        // Here you can add the logic to send data to backend
+        sendToBackend(userAnswers);
+    }, 1000);
+}
+
+// Backend communication
+function sendToBackend(answers) {
+    // Example API call
+    console.log('Sending answers to backend:', answers);
+    /* Implement your API call here
+    fetch('your-api-endpoint', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(answers)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response
+        addMessage("Here are your personalized recommendations...");
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        addMessage("Sorry, there was an error processing your results. Please try again.");
+    });
+    */
+}
+
+// Add necessary styles
+const style = document.createElement('style');
+style.textContent = `
+    .scroll-bottom-btn {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(105, 181, 120, 0.9);
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+    
+    .scroll-bottom-btn:hover {
+        background: rgba(105, 181, 120, 1);
+        transform: translateY(-2px);
+    }
+
+    .option-button:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize the chat
+window.onload = () => {
+    addScrollToBottomButton();
+    // Add welcome message
+    addMessage("Welcome to your personalized skin assessment! 👋");
+    setTimeout(() => {
+        addMessage("Let's find the perfect skincare routine for you. Please answer a few questions about your skin.");
+        setTimeout(() => {
+            askQuestion(0);
+        }, 1000);
+    }, 1000);
+};
+    </script>
+
+    <!-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> -->
+    <!-- <script src="../assets/vendor/libs/popper/popper.js"></script> -->
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <!-- <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script> -->
+    <script src="../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script> -->
+
+    <!-- Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <!-- <script src="../assets/js/dashboards-analytics.js"></script> -->
+
+    <!-- Place this tag before closing body tag for github widget button. -->
+    <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
+  </body>
+</html>
