@@ -1,0 +1,949 @@
+<!doctype html>
+
+<html
+  lang="en"
+  class="light-style layout-menu-fixed layout-compact"
+  dir="ltr"
+  data-theme="theme-default"
+  data-assets-path="../assets/"
+  data-template="vertical-menu-template-free"
+  data-style="light">
+  <head>
+   <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Herbify</title>
+
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <!-- <link rel="icon" type="image/x-icon" href="../assets/img/favicon/favicon.ico" /> -->
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet" />
+
+    <link rel="stylesheet" href="../assets/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../assets/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <!-- <link rel="stylesheet" href="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" /> -->
+
+    <!-- Page CSS -->
+    <!-- Page -->
+    <link rel="stylesheet" href="../assets/vendor/css/pages/page-auth.css" />
+
+    <!-- Helpers -->
+    <script src="../assets/vendor/js/helpers.js"></script>
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <!-- <script src="../assets/js/config.js"></script> -->
+    <style type="text/css">
+      .chat-container {
+/*            width: 100%;*/
+/*            max-width: 800px;*/
+/*            background: white;*/
+/*            border-radius: 20px;*/
+/*            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);*/
+            overflow: scroll;
+            padding: 25px;
+            height: 35rem;
+        }
+
+      .message-content {
+     background-color: #E8F5E9;
+    padding: 15px 20px;
+    border-radius: 18px;
+    max-width: 70%;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+        .message {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .bot-avatar {
+ width: 30px;
+    height: 30px;
+    background-color: #69B578;
+    border-radius: 50%;
+    margin-right: 10px;
+    flex-shrink: 0;
+    margin-top: 6px;
+        }
+
+        .user-avatar {
+               width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    margin-left: 12px;
+    flex-shrink: 0;
+    margin-top: 7px;
+        }
+
+        .message-content {
+            background-color: #E8F5E9;
+    padding: 15px 20px;
+    border-radius: 1px;
+    max-width: 70%;
+    font-size: 13px;
+    font-weight: 600;
+        }
+
+        .user-message {
+            flex-direction: row-reverse;
+        }
+
+        .user-message .message-content {
+            background-color: #E8F5E9;
+        }
+
+        .options-content {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+}
+
+       .options-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+
+    width: 100%;
+}
+        .option-button {
+        padding: 7px 20px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+}
+
+       .option-button:hover {
+    background-color: #E8F5E9;
+    border-color: #69B578;
+}
+
+
+
+.measurements-container {
+
+        }
+
+        .measurements-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .measurements-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: start;
+        }
+
+        .measurements-card {
+            background: #fff;
+            padding: 12px 0;
+            border-radius: 8px;
+            width: 80px;
+            text-align: center;
+            position: relative;
+        }
+
+        .measurements-card.carbs {
+            background-color: #f8f9ff;
+        }
+
+        .measurements-card.fat {
+            background-color: #fdfdf5;
+        }
+
+        .measurements-card.protein {
+            background-color: #fff8f8;
+        }
+
+        .circle-progress {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 10px;
+            position: relative;
+        }
+
+        .circle-progress svg {
+            transform: rotate(-90deg);
+        }
+
+        .circle-background {
+            fill: none;
+            stroke: #eee;
+            stroke-width: 4;
+        }
+
+        .circle-progress-bar {
+            fill: none;
+            stroke-width: 4;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+
+        .carbs .circle-progress-bar {
+            stroke: #6b7aff;
+        }
+
+        .fat .circle-progress-bar {
+            stroke: #95a94b;
+        }
+
+        .protein .circle-progress-bar {
+            stroke: #ff9b9b;
+        }
+
+        .measurements-value {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .measurements-label {
+            color: #666;
+            font-size: 10px;
+        }
+
+        .process-container{
+          margin: 30px;
+        }
+
+
+        .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.step-card {
+    border: 2px solid #90BC79;
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    background-color: #E8F5E9;
+}
+
+
+
+.step-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.step-title {
+    font-weight: 500;
+    color: #2D3748;
+}
+
+.tag {
+    background-color: #E6FFFA;
+    color: #319795;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.step-content {
+    color: #718096;
+}
+
+.step-content .line {
+    height: 8px;
+    background-color: #EDF2F7;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+
+.buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.btn {
+    padding: 8px 24px;
+    border-radius: 6px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #90BC79;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #7da568;
+}
+.white-text{
+    
+}
+
+.video-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .video {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .controls {
+            position: absolute;
+            bottom: 190px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .controls:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .play-pause-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            line-height: 30px;
+            text-align: center;
+        }
+
+        .skincare-container {
+            height: 28.6rem;
+            overflow-y: auto;
+            padding: 1rem;
+            background: #f5f5f5;
+        }
+
+        .skin-analysis {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #3498db;
+        }
+
+        .routine-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .morning-routine {
+            border-left: 4px solid #f39c12;
+        }
+
+        .night-routine {
+            border-left: 4px solid #8e44ad;
+        }
+
+        .routine-title {
+            color: #2c3e50;
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .step-card {
+            background: #f8f9fa;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            color: #34495e;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .ingredients-list {
+            list-style-type: none;
+            margin-bottom: 0.5rem;
+        }
+
+        .ingredients-list li {
+            color: #555;
+            margin-bottom: 0.25rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .ingredients-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+        }
+
+        .instructions {
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .reaction-link {
+    color: #e74c3c;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.alternative-product {
+    background-color: #f8f9f9;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border-left: 3px solid #2ecc71;
+    display: none;
+}
+
+    </style>
+  </head>
+
+  <body>
+    <!-- Layout wrapper -->
+    <div class="layout-wrapper layout-content-navbar">
+      <div class="layout-container">
+        <!-- Menu -->
+
+        <div class="layout-wrapper layout-content-navbar">
+            <div class="layout-container">
+              <!-- Menu -->
+      
+              <div class="layout-wrapper layout-content-navbar">
+                <div class="layout-container">
+                  <!-- Menu -->
+          
+                  <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                    <div class="app-brand demo">
+                        <a href="index.html" class="app-brand-link">
+                          <span class="app-brand-text demo menu-text fw-bold ms-2">HERBIFY</span>
+                        </a>
+            
+                        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                          <i class="bx bx-chevron-left bx-sm d-flex align-items-center justify-content-center"></i>
+                        </a>
+                      </div>
+        
+                  <div class="menu-inner-shadow"></div>
+        
+                  <ul class="menu-inner py-1">
+                    <!-- Dashboards -->
+                    <li class="menu-item">
+                      <a href="/analyze" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                        <div class="text-truncate" data-i18n="Dashboards">Skin Survey</div>
+                        <!-- <span class="badge rounded-pill bg-danger ms-auto">5</span> -->
+                      </a>
+        
+                    </li>
+        
+                    <!-- Layouts -->
+                    <li class="menu-item active button">
+                        <a href="/routine" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-layout"></i>
+                        <div class="text-truncate" data-i18n="Layouts">Your Routine</div>
+                      </a>
+        
+        
+                    </li>
+        
+                    
+                    <!-- Apps & Pages -->
+                    <li class="menu-header small text-uppercase">
+                      <span class="menu-header-text">Profile Settings</span>
+                    </li>
+                    
+                    <!-- Pages -->
+                    <li class="menu-item">
+                      <a href="profile" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div class="text-truncate" data-i18n="Account">Account Settings</div>
+                      </a>
+        
+                    </li>
+                    
+        
+                    <!-- Components -->
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+                    <!-- Cards -->
+                    <li class="menu-item">
+                      <a href="/blog" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-collection"></i>
+                        <div class="text-truncate" data-i18n="Basic">Blogs</div>
+                      </a>
+                    </li>
+                    <li class="menu-item ">
+                        <a href="/progress" class="menu-link">
+                          <i class="menu-icon tf-icons bx bx-collection"></i>
+                          <div class="text-truncate" data-i18n="Basic">Track Progress</div>
+                        </a>
+                      </li>
+                    <li class="menu-item">
+                        <a href="/product" class="menu-link">
+                          <i class="menu-icon tf-icons bx bx-collection"></i>
+                          <div class="text-truncate" data-i18n="Basic">Products</div>
+                        </a>
+                      </li>
+                    <!-- User interface -->
+                    
+        
+                    
+                    <li class="menu-item">
+                      <a
+                        href="https://github.com/"
+                        target="_blank"
+                        class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-support"></i>
+                        <div class="text-truncate" data-i18n="Support">Support</div>
+                      </a>
+                    </li>
+        
+                  </ul>
+                </aside>
+        <!-- Layout container -->
+        <div class="layout-page">
+          <!-- Navbar -->
+
+          <nav
+            class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+            id="layout-navbar" style="background: white;">
+            <div class="layout-menu-toggle navbar-nav align-items-xl-center me-4 me-xl-0 d-xl-none">
+              <a class="nav-item nav-link px-0 me-xl-6" href="javascript:void(0)">
+                <i class="bx bx-menu bx-md"></i>
+              </a>
+            </div>
+
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+
+            <b>Skin Survey</b>
+              <ul class="navbar-nav flex-row align-items-center ms-auto">
+
+                <!-- User -->
+                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                  <a
+                    class="nav-link dropdown-toggle hide-arrow p-0"
+                    href="javascript:void(0);"
+                    data-bs-toggle="dropdown">
+                    <div class="avatar avatar-online">
+                     A
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <div class="d-flex">
+                          <div class="flex-shrink-0 me-3">
+                            <div class="avatar avatar-online">
+                              A
+                            </div>
+                          </div>
+                          <div class="flex-grow-1">
+                            <h6 class="mb-0">John Doe</h6>
+                            <small class="text-muted">Admin</small>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"> <i class="bx bx-cog bx-md me-3"></i><span>Settings</span> </a>
+                    </li>
+                    
+                    <li>
+                      <div class="dropdown-divider my-1"></div>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="javascript:void(0);">
+                        <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <!--/ User -->
+              </ul>
+            </div>
+          </nav>
+
+          <!-- / Navbar -->
+
+          <!-- Content wrapper -->
+          <div class="content-wrapper">
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <div class="row">
+                <div class="col-xxl-8 mb-6 order-0">
+                    <div class="card">
+                        <div class="video-container">
+                            <video class="video">
+                                <source src="../uploads/Normal Skin + General .mp4" type="video/mp4">
+                                <source src="upload/v1.ogg" type="video/ogg">
+                                Your browser does not support HTML video.
+                            </video>
+                            <div class="controls">
+                                <button class="play-pause-btn">▶</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <div class="nav-align-top mb-6 col">
+                    <ul class="nav nav-pills mb-4" role="tablist">
+                      <li class="nav-item col" role="presentation">
+                        <button type="button" class="nav-link active" role="tab" data-bs-toggle="tab" data-bs-target="#navs-pills-top-home" aria-controls="navs-pills-top-home" aria-selected="true">
+                          Routine
+                        </button>
+                      </li>
+                     
+    
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane fade show active" id="navs-pills-top-home" role="tabpanel">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <div class="skincare-container" id="skincare-routine">
+                                    <!-- Content will be inserted here by JavaScript -->
+                                    <div class="loading">Loading your personalized skincare routine...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                <!--/ Expense Overview -->
+          <!-- Content wrapper -->
+        </div>
+
+              <!-- / Layout page -->
+      </div>
+
+      <!-- Overlay -->
+      <div class="layout-overlay layout-menu-toggle"></div>
+    </div>
+    <!-- / Layout wrapper -->
+
+
+    <center><a href="/product" 
+   style="
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 16px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      justify-content: center;
+      width: 15%;
+      height: auto;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);"
+   onmouseover="this.style.backgroundColor='#45a049'"
+   onmouseout="this.style.backgroundColor='#4CAF50'">
+   Buy Now
+</a> </center>
+
+   
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+
+    <script>
+// Add these styles first
+const styles = `
+.reaction-link {
+    color: #e74c3c;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.alternative-product {
+    background-color: #f8f9f9;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border-left: 3px solid #2ecc71;
+    display: none;
+}`;
+
+// Add the styles to the document
+const styleSheet = document.createElement("style");
+styleSheet.innerText = styles;
+document.head.appendChild(styleSheet);
+
+const skincareRoutines = {
+    'Oily': {
+        'default': {
+            morning: {
+                cleanser: {
+                    primary: "Gentle Neem Cleanser",
+                    alternative: "Aloe vera or Mint"
+                },
+                toner: {
+                    primary: "Green Tea Toner",
+                    alternative: "Hibiscus or Ginger tea"
+                },
+                moisturizer: {
+                    primary: "Light Aloe Gel",
+                    alternative: "Brahmi or Cucumber"
+                }
+            },
+            night: {
+                cleanser: {
+                    primary: "Honey Cleanser",
+                    alternative: "Maple Syrup"
+                },
+                moisturizer: {
+                    primary: "Jojoba Oil",
+                    alternative: "Pure Kumkumadi Oil"
+                }
+            }
+        },
+        'Pimples & Acne': {
+            morning: {
+                cleanser: {
+                    primary: "Neem & Tulsi Face Wash",
+                    alternative: "Aloe vera or Mint",
+                },
+                toner: {
+                    primary: "Green Tea + Witch Hazel",
+                    alternative: "White Tea or Tulsi Tea"
+                },
+                moisturizer: {
+                    primary: "Aloe Vera + Tea Tree Oil",
+                    alternative: "Cucumber Pulp + Lavender Oil"
+                }
+            },
+            night: {
+                cleanser: {
+                    primary: "Honey & Lemon Wash",
+                    alternative: "Chandana & Vetiver Root"
+                },
+                treatment: {
+                    primary: "Sandalwood & Turmeric Paste",
+                    alternative: "Multani Mitti & Neem"
+                },
+                moisturizer: {
+                    primary: "Jojoba Oil",
+                    alternative: "Pure Kumkuadi Oil"
+                }
+            }
+        }
+    }
+};
+
+// Rest of the code remains the same
+function reportReaction(timing, step) {
+    const alternativeElement = document.getElementById(`${timing}-${step}-alternative`);
+    if (alternativeElement) {
+        alternativeElement.style.display = alternativeElement.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+function processUserSkinData(userData) {
+    try {
+        const skinType = userData.skinType?.type || 'Normal';
+        const mainConcern = userData.mainConcern?.type || 'No Major Concerns';
+        const confidence = userData.skinType?.confidence || 0;
+
+        const skinTypeRoutines = skincareRoutines[skinType];
+        if (!skinTypeRoutines) {
+            return {
+                error: true,
+                message: 'Skin type not found',
+                routine: null
+            };
+        }
+
+        const routine = skinTypeRoutines[mainConcern] || skinTypeRoutines['default'];
+        
+        return {
+            error: false,
+            skinAnalysis: {
+                type: skinType,
+                confidence: confidence,
+                mainConcern: mainConcern
+            },
+            routine: routine
+        };
+    } catch (error) {
+        console.error('Error processing skin data:', error);
+        return {
+            error: true,
+            message: 'Error processing skin data',
+            routine: null
+        };
+    }
+}
+
+function generateRoutineHTML(routine, timing) {
+    return Object.entries(routine).map(([step, product]) => `
+        <div class="step" style="margin: 10px 0;">
+            <strong>${step}:</strong> ${product.primary}
+            <span class="reaction-link" onclick="reportReaction('${timing}', '${step}')">Had a reaction?</span>
+            <div id="${timing}-${step}-alternative" class="alternative-product">
+                Herbal Alternative: ${product.alternative}
+            </div>
+        </div>
+    `).join('');
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    const userDataFromDB = {
+        skinType: { type: 'Oily', confidence: 85 },
+        mainConcern: { type: 'Pimples & Acne', severity: 'Moderate' }
+    };
+
+    const result = processUserSkinData(userDataFromDB);
+    const skincareRoutineElement = document.getElementById('skincare-routine');
+    
+    if (!result.error) {
+        const htmlContent = `
+            <div class="skin-analysis">
+                <h3>Your Skin Analysis</h3>
+                <p>Skin Type: ${result.skinAnalysis.type} (${result.skinAnalysis.confidence}% confidence)</p>
+                <p>Main Concern: ${result.skinAnalysis.mainConcern}</p>
+            </div>
+
+            <div class="routine-card morning-routine">
+                <h3>☀️ Morning Routine</h3>
+                ${generateRoutineHTML(result.routine.morning, 'morning')}
+            </div>
+
+            <div class="routine-card night-routine">
+                <h3>🌙 Night Routine</h3>
+                ${generateRoutineHTML(result.routine.night, 'night')}
+            </div>
+        `;
+
+        skincareRoutineElement.innerHTML = htmlContent;
+    } else {
+        skincareRoutineElement.innerHTML = `
+            <div class="error" style="padding: 20px; text-align: center; color: #e74c3c;">
+                ${result.message}
+            </div>
+        `;
+    }
+});
+// Video player code
+const video = document.querySelector('.video');
+const playPauseBtn = document.querySelector('.play-pause-btn');
+let isPlaying = false;
+
+function togglePlayPause() {
+    if (video) {
+        if (isPlaying) {
+            video.pause();
+            playPauseBtn.textContent = '▶';
+        } else {
+            video.play();
+            playPauseBtn.textContent = '⏸';
+        }
+        isPlaying = !isPlaying;
+    }
+}
+
+// Add click event to play/pause button
+playPauseBtn.addEventListener('click', togglePlayPause);
+
+// Reset play button when video ends
+video.addEventListener('ended', () => {
+    isPlaying = false;
+    playPauseBtn.textContent = '▶';
+});
+
+// Add click event to video element itself
+video.addEventListener('click', togglePlayPause);
+    </script>
+
+    </script>
+
+    <!-- <script src="../assets/vendor/libs/jquery/jquery.js"></script> -->
+    <!-- <script src="../assets/vendor/libs/popper/popper.js"></script> -->
+    <script src="../assets/vendor/js/bootstrap.js"></script>
+    <!-- <script src="../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script> -->
+    <script src="../assets/vendor/js/menu.js"></script>
+
+    <!-- endbuild -->
+
+    <!-- Vendors JS
+    <script src="../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+     Main JS -->
+    <script src="../assets/js/main.js"></script>
+
+    <!-- Page JS -->
+    <!-- <script src="../assets/js/dashboards-analytics.js"></script> -->
+
+    <!-- Place this tag before closing body tag for github widget button. -->
+    <!-- <script async defer src="https://buttons.github.io/buttons.js"></script> -->
+  </body>
+</html>

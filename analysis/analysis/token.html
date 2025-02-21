@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Rewards - Herbify</title>
+    <style>
+        .rewards-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .rewards-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .token-balance {
+            background: #E8F5E9;
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #90BC79;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .token-icon {
+            width: 24px;
+            height: 24px;
+            background: #90BC79;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .daily-rewards-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .reward-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid transparent;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reward-card.available {
+            border-color: #90BC79;
+            background: #E8F5E9;
+        }
+
+        .reward-card.claimed {
+            background: #f0f0f0;
+            opacity: 0.7;
+        }
+
+        .reward-card:hover:not(.claimed) {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .reward-day {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .reward-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #90BC79;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .reward-status {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #90BC79;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .streak-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .streak-count {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .streak-icon {
+            width: 32px;
+            height: 32px;
+            background: #FFB74D;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .claim-animation {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); opacity: 1; }
+            100% { transform: translateY(-100px); opacity: 0; }
+        }
+
+        .floating-token {
+            animation: float 1s ease-out forwards;
+            position: absolute;
+            font-size: 24px;
+        }
+
+        /* Token Collection Animation */
+        @keyframes collect {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .collecting {
+            animation: collect 0.5s ease-out;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 6px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #90BC79;
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        /* Bonus Alert */
+        .bonus-alert {
+            background: #FFF3E0;
+            border-left: 4px solid #FFB74D;
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bonus-icon {
+            color: #FFB74D;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="rewards-container">
+        <div class="rewards-header">
+            <h3>Daily Rewards</h3>
+            <div class="token-balance">
+                <div class="token-icon">🌿</div>
+                <span id="tokenCount">120</span> Tokens
+            </div>
+        </div>
+
+        <div class="bonus-alert">
+            <div class="bonus-icon">🎉</div>
+            <div>
+                <strong>2x Bonus Day!</strong> 
+                <span>Claim double tokens today</span>
+            </div>
+        </div>
+
+        <div class="daily-rewards-grid" id="rewardsGrid">
+            <!-- Days will be filled by JavaScript -->
+        </div>
+
+        <div class="streak-info">
+            <div class="streak-count">
+                <div class="streak-icon">🔥</div>
+                <div>
+                    <div style="font-weight: 600;">3 Day Streak</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="color: #666;">
+                4 more days for bonus reward
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rewards = [
+            { day: 1, tokens: 10, claimed: true },
+            { day: 2, tokens: 15, claimed: true },
+            { day: 3, tokens: 20, claimed: false, available: true },
+            { day: 4, tokens: 25, claimed: false },
+            { day: 5, tokens: 30, claimed: false },
+            { day: 6, tokens: 35, claimed: false },
+            { day: 7, tokens: 50, claimed: false }
+        ];
+
+        let currentTokens = 120;
+
+        function initializeRewards() {
+            const grid = document.getElementById('rewardsGrid');
+            rewards.forEach(reward => {
+                const card = document.createElement('div');
+                card.className = `reward-card ${reward.claimed ? 'claimed' : ''} ${reward.available ? 'available' : ''}`;
+                card.innerHTML = `
+                    <div class="reward-day">Day ${reward.day}</div>
+                    <div class="reward-amount">
+                        <span class="token-icon" style="width: 20px; height: 20px; font-size: 12px;">🌿</span>
+                        ${reward.tokens}
+                    </div>
+                    ${reward.claimed ? '<div class="reward-status">✓</div>' : ''}
+                `;
+
+                if (reward.available && !reward.claimed) {
+                    card.onclick = () => claimReward(reward, card);
+                }
+                grid.appendChild(card);
+            });
+        }
+
+        function claimReward(reward, card) {
+            if (!reward.available || reward.claimed) return;
+
+            // Create floating tokens animation
+            const rect = card.getBoundingClientRect();
+            const tokenBalance = document.querySelector('.token-balance');
+            const balanceRect = tokenBalance.getBoundingClientRect();
+
+            for (let i = 0; i < 3; i++) {
+                const token = document.createElement('div');
+                token.className = 'floating-token';
+                token.textContent = '🌿';
+                token.style.left = `${rect.left + rect.width/2}px`;
+                token.style.top = `${rect.top + rect.height/2}px`;
+                document.body.appendChild(token);
+
+                setTimeout(() => token.remove(), 1000);
+            }
+
+            // Update UI
+            reward.claimed = true;
+            card.className = 'reward-card claimed';
+            card.innerHTML += '<div class="reward-status">✓</div>';
+
+            // Update token count with animation
+            currentTokens += reward.tokens;
+            document.getElementById('tokenCount').textContent = currentTokens;
+            tokenBalance.classList.add('collecting');
+            setTimeout(() => tokenBalance.classList.remove('collecting'), 500);
+
+            // Make next day available if exists
+            const nextReward = rewards[reward.day];
+            if (nextReward) {
+                nextReward.available = true;
+                const nextCard = card.nextElementSibling;
+                if (nextCard) nextCard.className = 'reward-card available';
+            }
+        }
+
+        // Initialize the rewards grid when the page loads
+        document.addEventListener('DOMContentLoaded', initializeRewards);
+    </script>
+</body>
+</html>
